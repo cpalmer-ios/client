@@ -48,7 +48,7 @@ const handleCloseUserMenu = () => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+         Revelationary
       </Typography>
       <Divider />
       <List>
@@ -80,6 +80,9 @@ const handleCloseUserMenu = () => {
             <MenuIcon />
           </IconButton>
 
+	   <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Revelationary
+          </Typography>
 
 
 	  <Box sx={{ flexGrow: 0 }}>

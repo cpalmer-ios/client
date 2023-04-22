@@ -13,7 +13,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
@@ -21,8 +26,23 @@ function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+
+
+	 const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+
+
+const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   const drawer = (
@@ -59,6 +79,40 @@ function Header(props) {
           >
             <MenuIcon />
           </IconButton>
+
+
+
+	  <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="#" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+
           <Typography
             variant="h6"
             component="div"
